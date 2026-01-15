@@ -19,7 +19,7 @@
     <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3 sticky-top">
       <div class="container">
         <a class="navbar-brand" href="index.html">
-          <img src="frontend/assets/images/logo-black.png" alt="Logo" class="logo-img" />
+          <img src="{{ asset($website_setting->website_logo) }}" alt="Logo" class="logo-img" />
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
@@ -32,19 +32,22 @@
               <a class="nav-link active" href="index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="courses.html">Courses</a>
+              <a class="nav-link" href="courses.html">Service</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
+              <a class="nav-link" href="about.html">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
+              <a class="nav-link" href="Dashboard.html">Image Gallery</a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link" href="Dashboard.html">Video Gallery</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="Dashboard.html">Dashboard</a>
+              <a class="nav-link" href="Dashboard.html">Blog</a>
             </li>
             <li class="nav-item ms-lg-3">
-              <a href="registration.html" class="btn btn-enroll">Enroll Now </a>
+              <a href="registration.html" class="btn btn-enroll">Contact Us</a>
             </li>
           </ul>
         </div>

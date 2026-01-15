@@ -7,7 +7,7 @@
   <title>{{ $website_setting->website_title }}</title>
 
   <!-- Favicon -->
-  <link rel="icon" href="frontend/assets/images/logo2-black.png" type="image/x-icon" width="80" />
+  <link rel="icon" href="{{asset($website_setting->website_favicon)}}" type="image/x-icon" width="80" />
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
@@ -81,7 +81,6 @@
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
   <script src="frontend/js/logoSlider.js"></script>
-  <script src="frontend/js/counter.js"></script>
   <script src="frontend/js/testimonials.js"></script>
   <script src="frontend/js/script.js"></script>
 </body>

@@ -222,6 +222,7 @@ Route::prefix('admin')
 
         // Newsletter
         Route::get('Newslatter', [NewslatterController::class, 'index'])->name('newslatter');
+        Route::post('Newslatter/', [NewslatterController::class,'store'])->name('newslatter.store');
         Route::get('Newslatter/destroy/{id}', [NewslatterController::class, 'destroy'])->name('newslatter.destroy');
 
         // SMS Settings
