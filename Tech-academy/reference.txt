@@ -1,0 +1,15 @@
+https://demo-themewinter.com/courselog/home-five/
+
+https://demo-themewinter.com/courselog/
+
+
+
+Pending task: 
+
+1. Category single courses page. - Done
+2. Buy Now - Popup form the enroll options
+3. User Dashboard - Done.
+4. Payment Processing Popup form - Done
+5. Login and Registration page. - Done
+6. Course Modeul - Open class popup video
+7. 
