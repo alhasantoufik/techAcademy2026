@@ -25,7 +25,9 @@ Route::get('/', [FrontendController::class, 'index'])->name('home');
 
 Route::get('/search', action: [FrontendController::class, 'search'])->name('search');
 
-Route::get('/shop-page', [FrontendController::class, 'shopPage'])->name('shop_page');
+Route::get('/servicePage', [FrontendController::class, 'servicePage'])->name('service.page');
+
+Route::get('/about-us', [FrontendController::class,'aboutUs'])->name('about.us');
 
 // Price filtering
 Route::get('/price-filter', [FrontendController::class, 'priceFilter'])->name('website.price.filter');
@@ -33,15 +35,18 @@ Route::get('/category-filter-multi', [FrontendController::class, 'multiCategoryF
 Route::get('/brand-filter-multi', [FrontendController::class, 'multiBrandFilter'])->name('brand_product.filter.multi');
 Route::get('/get-category-products/{id}', [FrontendController::class, 'getCategoryProducts'])->name('get_category.products');
 
+Route::get('service/category/{category_slug}', [ServiceController::class, 'categoryProducts'])->name('service.category');
 
 
-
-Route::get('/product-single-page/{id}', [FrontendController::class, 'productSinglePage'])->name('product_single.page');
+Route::get('/service-details-page/{id}', [FrontendController::class, 'serviceSinglePage'])->name('service_single.page');
 
 Route::get('/shoping-cart', [CartController::class, 'cartPage'])->name('cart.page');
 Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('addToCart');
 Route::get('remove-from-cart/{id}', [CartController::class, 'removeFromCart'])->name('removefrom.cart');
 Route::post('/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
+
+Route::get('/image-gallery', [FrontendController::class, 'imageGallery'])->name('image-gallery');
+Route::get('/video-gallery', [FrontendController::class, 'videoGallery'])->name('video-gallery');
 
 
 
@@ -70,32 +75,6 @@ Route::get('/faq', [FaqController::class, 'index'])->name('faq.page');
 Route::get('privacy/policy/page', [FrontendController::class, 'privacyPolicyPage'])->name('privacy_policy.page');
 Route::get('terms/and/condition', [FrontendController::class, 'termsAndCondtion'])->name('terms_and_condition.page');
 Route::get('return/refund', [FrontendController::class, 'returnRefund'])->name('return_refund.page');
-
-
-// Route::get('/project', [ProjectController::class, 'projectPage'])->name('project.page');
-// Route::get('/project/{project_slug}/', [ProjectController::class, 'projectSinglePage'])->name('projectSingle.page');
-
-
-// Route::get('/service', [ServiceController::class, 'servicePage'])->name('service.page');
-
-
-
-// Route::post('/send-message', [ContactPageController::class, 'contactForm'])->name('form.submit');
-
-
-// Route::get('/social-work-page', [SocialworkPageController::class, 'socialWorkPage'])->name('social_work_page.page');
-
-
-
-
-
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
-
 
 Route::post('/logout', function (Request $request) {
     Auth::logout();

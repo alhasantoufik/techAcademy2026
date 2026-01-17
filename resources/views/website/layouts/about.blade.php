@@ -1,54 +1,86 @@
-@php
-    use App\Models\WebsiteSetting;
-    $website_setting = WebsiteSetting::first();
-@endphp
-
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Title -->
-<title>{{ $website_setting->website_title }} | About Page</title>
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ asset($website_setting->website_favicon)}}" />
-    @include('website.layouts.inc.style')
-        <!-- AOS CSS -->
-    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <title>{{ $pageTitle }}</title>
+    @include('website.layouts.inc.script')
 </head>
+@include('website.layouts.inc.header')
 
-<body>
-
-    <!--==================== Preloader End ====================-->
-
-    <!--==================== Overlay Start ====================-->
-    <div class="body-overlay"></div>
-    <!--==================== Overlay End ====================-->
-
-    <!--==================== Sidebar Overlay End ====================-->
-    <div class="sidebar-overlay"></div>
-    <!--==================== Sidebar Overlay End ====================-->
-
-    <!-- ==================== Scroll to Top End Here ==================== -->
-    <a class="scroll-top"><i class="fas fa-angle-double-up"></i></a>
-    <!-- ==================== Scroll to Top End Here ==================== -->
-
-
-
-    <!-- ==================== Bottom Header End Here ==================== -->
 @include('website.layouts.inc.navber')
-    <!-- ==================== Bottom Header End Here ==================== -->
 
-    <!--========================== Search Modal Start ==========================-->
-   @include('website.layouts.inc.search-modal')
-    <!--========================== Search Modal End ==========================-->
+<!-- Page Top Header Breadcrumb Start-->
+<section id="breadcrumb-section" class="breadcrumb-section">
+    <div class="breadcrumb-overlay">
+        <div class="container">
+            <div class="content-breadcrumb text-center text-white">
+                <h3 class="mb-2">About Us</h3>
+                <ul class="breadcrumb-list d-flex justify-content-center gap-2">
+                    <li><a href="/">Home</a></li>
+                    <li>/</li>
+                    <li class="active">About Us</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
 
-@include('website.layouts.pages.about.about')
+<!-- Page Top Header Breadcrumb End-->
+<section id="our-story">
+    <div class="container">
+        <div class="row d-flex align-items-center">
+            <div class="col-md-6">
+                <div class="left-first-our-story">
+                    <h6 class="sub-about-heading">Our Mission</h6>
+                    <h2 class="about-our-story-heading">
+                        {!! $returnAboutUs->description !!}
 
-    <!-- ==========================feature setion end here ============================-->
+                    </h2>
+                    <p>
+                        {{ $returnAboutUs->mission }}
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="right-first-our-story">
+                    <img
+                        src="{{ asset($returnAboutUs->missionImage) }}"
+                        class="img-fluid our-story-img"
+                        alt="" />
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex align-items-center my-5">
+            <div class="col-md-6">
+                <div class="left-second-our-story">
+                    <img
+                        src="{{ asset($returnAboutUs->vissionImage) }}"
+                        class="img-fluid our-story-img"
+                        alt="" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="right-second-our-story">
+                    <h6 class="sub-about-heading">Our Vission</h6>
+                    <h2 class="about-our-story-heading">
+                        {!! $returnAboutUs->description !!}
 
-    <!-- ========footer===== -->
+                    </h2>
+                    <p>
+                        {{ $returnAboutUs->vission }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- our story section end -->
+    <!-- Blog section start -->
+  @include('website.layouts.partials.blog-section')
+  <!-- Blog section end -->
+
+  <!-- Subscrib section start -->
+  @include('website.layouts.partials.subscribe-section')
+  <!-- Subscrib section end -->
+
 
 @include('website.layouts.inc.footer')

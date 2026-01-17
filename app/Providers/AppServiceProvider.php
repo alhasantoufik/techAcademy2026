@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use App\Models\WebsiteSetting;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Pagination\Paginator;
@@ -42,12 +43,18 @@ class AppServiceProvider extends ServiceProvider
             // Share globally to all blade views
             View::share('website_setting', $setting);
         }
+        $categories = Category::with('products')
+            ->where('category_slug', '!=', 'default')
+            ->select('id', 'category_name', 'image', 'category_slug')
+            ->get();
+
+        // Share $categories with all views
+        View::share('categories', $categories);
 
         // Set Bootstrap for Pagination
         Paginator::useBootstrap();
 
         // Enable Toastr with Vite
         Toastr::useVite();
-
     }
 }

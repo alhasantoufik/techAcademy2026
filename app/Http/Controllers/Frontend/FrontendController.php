@@ -22,9 +22,11 @@ use Illuminate\Http\Request;
 use App\Models\WebsiteSetting;
 use App\Models\WebsiteSocialIcon;
 use App\Http\Controllers\Controller;
+use App\Models\ImageGallery;
 use App\Models\Privacypolicy;
 use App\Models\Returnrefund;
 use App\Models\Termscondition;
+use App\Models\VideoGallery;
 
 class FrontendController extends Controller
 {
@@ -39,14 +41,14 @@ class FrontendController extends Controller
 
         $about = About::first();
         $social_icon = WebsiteSocialIcon::select(['id', 'messanger_url'])->first();
-        $website_setting = WebsiteSetting::select(['id', 'phone', 'website_title','email'])->first();
+        $website_setting = WebsiteSetting::select(['id', 'phone', 'website_title', 'email','address','footer_content','website_footer_logo','copyright_text'])->first();
 
         $featured_products = Product::with(['category:id,category_name'])
             ->where('is_active', 1)
             ->where('is_featured', 1)
             ->latest()
             ->limit(8)
-            ->get(['id', 'category_id', 'product_name', 'product_slug', 'regular_price', 'discount_price', 'discount_type', 'thumbnail','short_description']);
+            ->get(['id', 'category_id', 'product_name', 'product_slug', 'regular_price', 'discount_price', 'discount_type', 'thumbnail', 'short_description']);
 
         // $project_videos = ProjectVideo::latest()->limit(8)->get(['id', 'video_url']);
 
@@ -64,35 +66,77 @@ class FrontendController extends Controller
 
         $blogs = Post::latest()->take(3)->get();
 
-        $brands=Brand::latest()->take(6)->get();
+        $brands = Brand::latest()->take(6)->get();
 
         return view('website.home', compact(['banner', 'categories', 'achievements', 'reviews', 'about', 'featured_products', 'blogs', 'promobanners', 'social_icon', 'website_setting', 'cta', 'brands']));
     }
 
-    public function shopPage(Request $request)
+    public function servicePage(Request $request)
     {
-        $pageTitle = 'Shop';
+        $pageTitle = 'Service';
+
         $products = Product::where('is_active', 1)
+            ->when($request->category_id, function ($query) use ($request) {
+                $query->where('category_id', $request->category_id);
+            })
             ->latest()
-            ->select(['id', 'category_id', 'product_name', 'product_slug', 'regular_price', 'discount_price', 'discount_type', 'thumbnail'])
+            ->select([
+                'id',
+                'category_id',
+                'product_name',
+                'product_slug',
+                'regular_price',
+                'discount_price',
+                'discount_type',
+                'thumbnail',
+                'short_description'
+            ])
             ->paginate(12);
 
         if ($request->ajax()) {
-            return view('website.layouts.pages.product.partials.products', compact('products'))->render();
+            return view('website.layouts.pages.services.partials.products', compact('products'))->render();
         }
 
         $categories = Category::get(['id', 'category_name', 'category_slug']);
-        $brands = Brand::with('products')->get(['id', 'brand_name']);
+        $brands = Brand::get(['id', 'brand_name']);
 
-        return view('website.layouts.pages.product.shop-page', compact('products', 'categories', 'brands', 'pageTitle'));
+        return view('website.layouts.pages.services.service-page', compact(
+            'products',
+            'categories',
+            'brands',
+            'pageTitle'
+        ));
     }
 
-    public function productSinglePage($id)
+    public function serviceSinglePage($id)
     {
-        $product = Product::with(['category:id,category_name'])->findOrFail($id);
-        $relatedProducts = Product::where('id', '!=', $product->id)->latest()->take(4)->get();
-        return view('website.layouts.pages.product.product-single-page', compact('product', 'relatedProducts'));
+        $product = Product::with(['category:id,category_name'])
+            ->where('is_active', 1)
+            ->findOrFail($id);
+
+        $relatedProducts = Product::where('id', '!=', $product->id)
+            ->where('category_id', $product->category_id) // same category
+            ->where('is_active', 1)
+            ->latest()
+            ->take(4)
+            ->first([
+                'id',
+                'product_name',
+                'product_slug',
+                'regular_price',
+                'discount_price',
+                'discount_type',
+                'thumbnail',
+                'short_description',
+                'long_description'
+            ]);
+
+        return view(
+            'website.layouts.pages.services.product-single-page',
+            compact('product', 'relatedProducts')
+        );
     }
+
 
     // Product search
 
@@ -264,5 +308,27 @@ class FrontendController extends Controller
         $pageTitle = 'Return & Refund';
         $returnRefund = Returnrefund::first();
         return view('website.layouts.return_refund', compact('returnRefund', 'pageTitle'));
+    }
+
+    public function aboutUs()
+    {
+        $pageTitle = 'About us';
+        $returnAboutUs = About::first();
+        $blogs = Post::latest()->take(3)->get();
+
+        return view('website.layouts.about', compact('pageTitle', 'returnAboutUs', 'blogs'));
+    }
+
+
+    public function imageGallery()
+    {
+        $imageGalleries = ImageGallery::latest()->get();
+        return view('website.layouts.image-gallery', compact('imageGalleries'));
+    }
+
+    public function videoGallery()
+    {
+        $videoGalleries = VideoGallery::latest()->get();
+        return view('website.layouts.video-gallery', compact('videoGalleries'));
     }
 }

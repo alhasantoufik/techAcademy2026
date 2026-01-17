@@ -15,7 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('about_title');
             $table->longText('description');
+            $table->longText('mission')->nullable();
+            $table->longText('vission')->nullable();
             $table->string('image')->nullable();
+            $table->string('missionImage')->nullable();
+            $table->string('vissionImage')->nullable();
             $table->timestamps();
         });
     }
@@ -28,3 +32,6 @@ return new class extends Migration
         Schema::dropIfExists('abouts');
     }
 };
+
+
+

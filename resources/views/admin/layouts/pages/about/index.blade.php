@@ -46,6 +46,43 @@
                                 </div>
                             </div>
 
+                            <div class="col-lg-12 col-md-12 col-sm-8 col-xs-7 mb-3">
+                                <label for="banner_description"><b>Mission Description</b></label>
+                                <div class="form-group">
+                                    <div class="" style="border: 1px solid #ccc">
+                                        <textarea type="text" id="ckeditor" name="mission" class="form-control">{!! $about->mission !!}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-8 col-xs-7 mb-3">
+                                <label for="banner_description"><b>Vission Description</b></label>
+                                <div class="form-group">
+                                    <div class="" style="border: 1px solid #ccc">
+                                        <textarea type="text" id="ckeditor" name="vission" class="form-control">{!! $about->vission !!}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-8 col-xs-7 mb-3">
+                                <label for="customFile"><b>Mission Image</b></label>
+                                <div class="form-group">
+                                    <div class="mb-2" style="border: 1px solid #ccc">
+                                        <input type="file" class="form-control" id="customFile" / name="missionImage">
+                                    </div>
+                                    <img src="{{ asset($about->image) }}" alt="" width="40">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-8 col-xs-7 mb-3">
+                                <label for="customFile"><b>Vission Image</b></label>
+                                <div class="form-group">
+                                    <div class="mb-2" style="border: 1px solid #ccc">
+                                        <input type="file" class="form-control" id="customFile" / name="vissionImage">
+                                    </div>
+                                    <img src="{{ asset($about->image) }}" alt="" width="40">
+                                </div>
+                            </div>
 
                             <div class="col-lg-12 col-md-12 col-sm-8 col-xs-7 mb-3">
                                 <label for="customFile"><b>About Image</b></label>

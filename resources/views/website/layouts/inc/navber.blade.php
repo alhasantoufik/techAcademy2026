@@ -1,24 +1,25 @@
 @php
-    use App\Models\WebsiteSetting;
-    use App\Models\Category;
-    $categories = Category::where('category_slug', '!=', 'default')->get(['id', 'category_name', 'image']);
+use App\Models\WebsiteSetting;
+use App\Models\Category;
 
-    $website_setting = WebsiteSetting::first();
+$categories = Category::where('category_slug', '!=', 'default')
+->whereNotNull('category_slug') // <-- safety check
+  ->get(['id', 'category_name', 'image', 'category_slug']);
 
-    $cart = session()->get('cart', []);
-    $itemCount = 0;
+  $website_setting = WebsiteSetting::first();
 
-    foreach ($cart as $item) {
-        $itemCount += $item['quantity'];
-    }
+  $cart = session()->get('cart', []);
+  $itemCount = 0;
+  foreach ($cart as $item) {
+  $itemCount += $item['quantity'];
+  }
+  @endphp
 
-@endphp
-
-<header>
+  <header>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3 sticky-top">
       <div class="container">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="{{ route('home') }}">
           <img src="{{ asset($website_setting->website_logo) }}" alt="Logo" class="logo-img" />
         </a>
 
@@ -28,26 +29,47 @@
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
           <ul class="navbar-nav mb-2 mb-lg-0 align-items-lg-center">
+
+            <!-- Home -->
             <li class="nav-item">
-              <a class="nav-link active" href="index.html">Home</a>
+              <a class="nav-link active" href="{{ route('home') }}">Home</a>
+            </li>
+
+            <!-- Services Dropdown -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="{{ route('service.page') }}" id="serviceDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Service
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="serviceDropdown">
+                @foreach ($categories as $category)
+                @if($category->category_slug) <!-- safety check -->
+                <li>
+                  <a class="dropdown-item" href="{{ route('service.category', $category->category_slug) }}">
+                    {{ $category->category_name }}
+                  </a>
+                </li>
+                @endif
+                @endforeach
+              </ul>
+            </li>
+
+            <!-- Other Links -->
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('about.us') }}">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="courses.html">Service</a>
+              <a class="nav-link" href="{{ route('image-gallery') }}">Image Gallery</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="about.html">About Us</a>
+              <a class="nav-link" href="{{ route('video-gallery') }}">Video Gallery</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="Dashboard.html">Image Gallery</a>
+              <a class="nav-link" href="{{ route('blog.page') }}">Blog</a>
             </li>
-             <li class="nav-item">
-              <a class="nav-link" href="Dashboard.html">Video Gallery</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="Dashboard.html">Blog</a>
-            </li>
+
+            <!-- Contact Button -->
             <li class="nav-item ms-lg-3">
-              <a href="registration.html" class="btn btn-enroll">Contact Us</a>
+              <a href="{{ route('contact.page') }}" class="btn btn-enroll">Contact Us</a>
             </li>
           </ul>
         </div>

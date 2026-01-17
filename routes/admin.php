@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\SmsSettingController;
 use App\Http\Controllers\Admin\SocialIconController;
 use App\Http\Controllers\Admin\WhyChoseUsController;
 use App\Http\Controllers\Admin\AchievementController;
+use App\Http\Controllers\Admin\ImageGalleryController;
 use App\Http\Controllers\Admin\PromobannerController;
 use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\PostCategoryController;
@@ -36,6 +37,7 @@ use App\Http\Controllers\Admin\PaymentMethodController;
 use App\Http\Controllers\Admin\PrivacypolicyController;
 use App\Http\Controllers\Admin\WebsiteSettingController;
 use App\Http\Controllers\Admin\TermsAdnCondiotnController;
+use App\Http\Controllers\Admin\VideoGalleryController;
 
 Route::prefix('admin')
     ->middleware(['auth', 'admin'])
@@ -129,6 +131,25 @@ Route::prefix('admin')
             Route::resource('cta', CtaController::class);
             Route::post('/cta/status-change', [CtaController::class, 'ctaChangeStatus'])->name('cta.status');
 
+            // Image Gallery
+            Route::prefix('image-gallery')->group(function () {
+                Route::get('/', [ImageGalleryController::class, 'index'])->name('image-gallery.index');
+                Route::get('create', [ImageGalleryController::class, 'create'])->name('image-gallery.create');
+                Route::post('store', [ImageGalleryController::class, 'store'])->name('image-gallery.store');
+                Route::get('edit/{id}', [ImageGalleryController::class, 'edit'])->name('image-gallery.edit');
+                Route::put('update/{id}', [ImageGalleryController::class, 'update'])->name('image-gallery.update');
+                Route::delete('destroy/{id}', [ImageGalleryController::class, 'destroy'])->name('image-gallery.destroy');
+            });
+
+            // Video Gallery
+            Route::prefix('video-gallery')->group(function () {
+                Route::get('/', [VideoGalleryController::class, 'index'])->name('video-gallery.index');
+                Route::get('create', [VideoGalleryController::class, 'create'])->name('video-gallery.create');
+                Route::post('store', [VideoGalleryController::class, 'store'])->name('video-gallery.store');
+                Route::get('edit/{id}', [VideoGalleryController::class, 'edit'])->name('video-gallery.edit');
+                Route::put('update/{id}', [VideoGalleryController::class, 'update'])->name('video-gallery.update');
+                Route::delete('destroy/{id}', [VideoGalleryController::class, 'destroy'])->name('video-gallery.destroy');
+            });
         });
 
         // Categories
@@ -217,12 +238,13 @@ Route::prefix('admin')
 
         // Contact form message route
         Route::get('message', [InboxController::class, 'index'])->name('inboxed_message');
+        Route::post('message', [InboxController::class, 'store'])->name('stored_message');
         Route::get('message-show/{id}', [InboxController::class, 'show'])->name('message.show');
         Route::delete('message/delete/{id}', [InboxController::class, 'destroy'])->name('message.destroy');
 
         // Newsletter
         Route::get('Newslatter', [NewslatterController::class, 'index'])->name('newslatter');
-        Route::post('Newslatter/', [NewslatterController::class,'store'])->name('newslatter.store');
+        Route::post('Newslatter/', [NewslatterController::class, 'store'])->name('newslatter.store');
         Route::get('Newslatter/destroy/{id}', [NewslatterController::class, 'destroy'])->name('newslatter.destroy');
 
         // SMS Settings
@@ -231,7 +253,7 @@ Route::prefix('admin')
 
 
         // SMS routes here
-        Route::group(['prefix' => 'moblieSMS'], function(){
+        Route::group(['prefix' => 'moblieSMS'], function () {
             Route::get('sms', [SmsSettingController::class, 'moblie_sms'])->name('mobile.sms');
             Route::get('custom-sms', [SmsSettingController::class, 'custom_sms'])->name('custom.sms');
             Route::get('sms-report', [SmsSettingController::class, 'sms_report'])->name('sms_report.sms');
@@ -259,6 +281,4 @@ Route::prefix('admin')
         // Website Color routes
         Route::get('website-color', [WebsiteColorController::class, 'edit'])->name('website_color.edit');
         Route::put('/website-color/update/{id}', [WebsiteColorController::class, 'update'])->name('website_color.update');
-
-
     });

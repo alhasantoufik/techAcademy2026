@@ -26,8 +26,8 @@
                             <tr>
                                 <th>S/N</th>
                                 <th>Name</th>
-								<th>Email</th>
-								<th>Address</th>
+                                <th>Phone</th>
+                                <th>Message</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -36,10 +36,9 @@
                             @foreach ($messages as $key=>$message)
                             <tr>
                                 <td>{{$key+1 }}</td>
-								<td>{{ $message->name }}</td>
-								<td>{{ $message->email }}</td>
-								<td>{{ $message->subject }}</td>
-								<td>{!! Str::words($message->message, 6, '...') !!}</td>
+                                <td>{{ $message->name }}</td>
+                                <td>{{ $message->phone }}</td>
+                                <td>{!! Str::words($message->message, 6, '...') !!}</td>
 
                                 <td>
 
@@ -84,7 +83,7 @@
 
 
 <script>
-    $('.show_confirm').click(function(event){
+    $('.show_confirm').click(function(event) {
         let form = $(this).closest('form');
         event.preventDefault();
 
@@ -96,20 +95,18 @@
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
-            }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
                 form.submit();
                 Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success"
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
                 });
             }
-            });
+        });
 
     });
-
-
 </script>
 
 @endpush

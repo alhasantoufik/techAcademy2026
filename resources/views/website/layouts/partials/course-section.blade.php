@@ -29,7 +29,7 @@
               <p>{{ $products->short_description }}</p>
               <hr />
               <div class="course-btns mt-auto d-flex justify-content-between align-items-center">
-                <a href="courseDetails.html" class="view-details-btn btn-sm"><i class="fas fa-eye me-1"></i> View
+                <a href="{{ route('service_single.page', $products->id ) }}" class="view-details-btn btn-sm"><i class="fas fa-eye me-1"></i> View
                   Service</a>
                 {{-- <a href="enroll.html" class="btn-enroll btn-sm"><i class="fas fa-user-plus me-1"></i> Enroll</a> --}}
               </div>
