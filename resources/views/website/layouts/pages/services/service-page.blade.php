@@ -63,13 +63,18 @@
 
 @include('website.layouts.inc.footer')
 
-<!-- Bootstrap JS & Custom JS -->
-<script src="frontend/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap JS (MOST IMPORTANT) -->
+<script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
+
 <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-<script src="frontend/js/logoSlider.js"></script>
-<script src="frontend/js/testimonials.js"></script>
-<script src="frontend/js/script.js"></script>
+
+<!-- Custom JS -->
+<script src="{{ asset('frontend/js/logoSlider.js') }}"></script>
+<script src="{{ asset('frontend/js/testimonials.js') }}"></script>
+<script src="{{ asset('frontend/js/script.js') }}"></script>
+
+<!-- jQuery (if needed) -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <script>

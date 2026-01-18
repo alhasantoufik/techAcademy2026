@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title', 'Add Product')
+@section('title', 'Add Service')
 @push('styles')
     <link rel="stylesheet" href="{{ asset('backend') }}/assets/plugins/bootstrap-select/css/bootstrap-select.css" />
 
@@ -43,8 +43,8 @@
             <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="text-uppercase"> Add Product <span><a href="{{ route('product.index') }}"
-                                    class="btn btn-primary right">All Product</a></span></h4>
+                        <h4 class="text-uppercase"> Add Service <span><a href="{{ route('product.index') }}"
+                                    class="btn btn-primary right">All Service</a></span></h4>
                     </div>
                     <div class="body">
                         {{-- <form class="form-horizontal" action="{{ route('subcategory.store') }}"
@@ -54,7 +54,7 @@
 
                             <div class="row mb-3">
                                 <div class="col-lg-6">
-                                    <label for="product_name"><b>Product Name</b></label>
+                                    <label for="product_name"><b>Service Name</b></label>
                                     <div class="form-group" style="border: 1px solid #ccc">
                                         <input type="text" id="product_name" name="product_name" class="form-control"
                                             placeholder="Enter Product name">
@@ -75,7 +75,7 @@
 
                             <div class="row mb-3">
                                 <div class="col-lg-6">
-                                    <label for="category_id"><b>Product Category</b></label>
+                                    <label for="category_id"><b>Service Category</b></label>
                                     <div class="form-group" style="border: 1px solid #ccc">
                                         <select name="category_id" class="form-control show-tick">
                                             <option disabled selected>Select Category ....</option>
@@ -200,7 +200,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <button type="submit" class="btn btn-primary right" id="submitBtn">
-                                        <span id="submitBtnText">SAVE PRODUCT</span>
+                                        <span id="submitBtnText">SAVE Service</span>
                                         <span id="spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
                                     </button>
                                 </div>

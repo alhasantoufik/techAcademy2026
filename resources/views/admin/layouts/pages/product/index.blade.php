@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title', 'All Products')
+@section('title', 'All Service')
 
 @push('styles')
 
@@ -21,8 +21,8 @@
         <div class="col-lg-12 col-md-12 col-sm-12 mt-4">
             <div class="card">
                 <div class="card-header">
-                    <h4> All Products <span><a href="{{ route('product.trash') }}" class="btn btn-primary text-uppercase" >Recycle Bin ( {{ $countDeletedData->count() }} )</a></span> <span><a href="{{ route('product.create') }}" class="btn btn-primary text-white text-uppercase text-bold right">
-                        + Add Product
+                    <h4> All Service <span><a href="{{ route('product.trash') }}" class="btn btn-primary text-uppercase" >Recycle Bin ( {{ $countDeletedData->count() }} )</a></span> <span><a href="{{ route('product.create') }}" class="btn btn-primary text-white text-uppercase text-bold right">
+                        + Add Service
                    </a></span></h4>
                 </div>
                 <div class="body">

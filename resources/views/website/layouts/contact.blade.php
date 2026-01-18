@@ -111,7 +111,13 @@
 </section>
 <!---------------- Contact section End ----------------->
 
-
+ <!-- Bootstrap JS & Custom JS -->
+  <script src="frontend/js/bootstrap.bundle.min.js"></script>
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="frontend/js/logoSlider.js"></script>
+  <script src="frontend/js/testimonials.js"></script>
+  <script src="frontend/js/script.js"></script>
 
 
 

@@ -39,7 +39,7 @@
 @endforeach
 
         <div class="more-course-btn text-center">
-          <a href="courses.html" class="btn btn-enroll">Browse More Course <i class="fa-solid fa-arrow-right-long"></i>
+          <a href="{{ route('service.page') }}" class="btn btn-enroll">Browse More Course <i class="fa-solid fa-arrow-right-long"></i>
           </a>
         </div>
       </div>

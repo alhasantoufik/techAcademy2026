@@ -26,13 +26,13 @@
             </p>
 
             <!-- Search Bar -->
-            <form class="d-flex mt-4" role="search">
+            <!-- <form class="d-flex mt-4" role="search">
               <input class="form-control me-2 shadow-sm" type="search" placeholder="Search courses..."
                 aria-label="Search" />
               <button class="btn btn-enroll px-4" type="submit">
                 Search
               </button>
-            </form>
+            </form> -->
           </div>
         </div>
 

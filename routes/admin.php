@@ -244,7 +244,7 @@ Route::prefix('admin')
 
         // Newsletter
         Route::get('Newslatter', [NewslatterController::class, 'index'])->name('newslatter');
-        Route::post('Newslatter/', [NewslatterController::class, 'store'])->name('newslatter.store');
+       
         Route::get('Newslatter/destroy/{id}', [NewslatterController::class, 'destroy'])->name('newslatter.destroy');
 
         // SMS Settings
@@ -282,3 +282,6 @@ Route::prefix('admin')
         Route::get('website-color', [WebsiteColorController::class, 'edit'])->name('website_color.edit');
         Route::put('/website-color/update/{id}', [WebsiteColorController::class, 'update'])->name('website_color.update');
     });
+
+
+     Route::post('Newslatter/', [NewslatterController::class, 'store'])->name('newslatter.store');

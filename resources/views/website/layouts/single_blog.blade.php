@@ -142,12 +142,6 @@
 
 
 
-
-
-
-
-@include('website.layouts.inc.footer')
-
 <!-- Bootstrap JS & Custom JS -->
 <script src="frontend/js/bootstrap.bundle.min.js"></script>
 <!-- Swiper JS -->
@@ -155,3 +149,8 @@
 <script src="frontend/js/logoSlider.js"></script>
 <script src="frontend/js/testimonials.js"></script>
 <script src="frontend/js/script.js"></script>
+
+
+
+@include('website.layouts.inc.footer')
+

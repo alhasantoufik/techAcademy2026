@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title', 'Deleted Products')
+@section('title', 'Deleted Service')
 @push('styles')
 <link rel="stylesheet" href="{{ asset('backend') }}/assets/css/sweetalert2.min.css">
 @endpush
@@ -15,8 +15,8 @@
         <div class="col-lg-12 col-md-12 col-sm-12 mt-4">
             <div class="card">
                 <div class="card-header">
-                    <h4 class=""> Deleted Product ( {{ $countDeletedData->count() }} )  <span> <a href="{{ route('product.index') }}" class="btn btn-warning text-white text-bold text-uppercase right">
-                        All Product
+                    <h4 class=""> Deleted Service ( {{ $countDeletedData->count() }} )  <span> <a href="{{ route('product.index') }}" class="btn btn-warning text-white text-bold text-uppercase right">
+                        All Service
                     </a></span> </h4>
                 </div>
                 <div class="body">
@@ -24,9 +24,9 @@
                         <thead>
                             <tr>
                                 <th>S/N</th>
-                                <th>Product Thumbnail</th>
-                                <th>Product Name</th>
-                                <th>Product Price</th>
+                                <th>Service Thumbnail</th>
+                                <th>Service Name</th>
+                                <th>Service Price</th>
                                 <th>Created At</th>
                                 <th>Action</th>
                             </tr>

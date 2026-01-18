@@ -19,6 +19,6 @@ class SubscriberController extends Controller
             'phone' => $request->phone,
         ]);
 
-        return response()->json(['success' => true]);
+        return redirect()->route('home');
     }
 }

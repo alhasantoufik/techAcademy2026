@@ -79,14 +79,14 @@
 
             <li class="{{ $isProductActive ? 'active open' : '' }}">
                 <a href="javascript:void(0);" class="menu-toggle"> <i class="zmdi zmdi-shopping-cart"></i>
-                    <span>Product</span>
+                    <span>Service</span>
                 </a>
                 <ul class="ml-menu">
                     <li class="{{ request()->routeIs('product.create') ? 'active' : '' }}">
-                        <a href="{{ route('product.create') }}">Add Product</a>
+                        <a href="{{ route('product.create') }}">Add Service</a>
                     </li>
                     <li class="{{ request()->routeIs('product.index') ? 'active' : '' }}">
-                        <a href="{{ route('product.index') }}">All Product</a>
+                        <a href="{{ route('product.index') }}">All Service</a>
                     </li>
                     <li class="{{ request()->routeIs('category.*') ? 'active' : '' }}">
                         <a href="{{ route('category.index') }}">Category</a>

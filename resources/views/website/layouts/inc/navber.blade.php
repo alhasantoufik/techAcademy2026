@@ -36,22 +36,43 @@ $categories = Category::where('category_slug', '!=', 'default')
             </li>
 
             <!-- Services Dropdown -->
+            <!-- Services Dropdown -->
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="{{ route('service.page') }}" id="serviceDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle"
+                href="#"
+                id="serviceDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false">
                 Service
               </a>
+
               <ul class="dropdown-menu" aria-labelledby="serviceDropdown">
                 @foreach ($categories as $category)
-                @if($category->category_slug) <!-- safety check -->
+                @if($category->category_slug)
                 <li>
-                  <a class="dropdown-item" href="{{ route('service.category', $category->category_slug) }}">
+                  <a class="dropdown-item"
+                    href="{{ route('service.category', $category->category_slug) }}">
                     {{ $category->category_name }}
                   </a>
                 </li>
                 @endif
                 @endforeach
+
+                <!-- Static All Service option -->
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li>
+                  <a class="dropdown-item fw-bold"
+                    href="{{ route('service.page') }}">
+                    All Service
+                  </a>
+                </li>
               </ul>
             </li>
+
+
 
             <!-- Other Links -->
             <li class="nav-item">
